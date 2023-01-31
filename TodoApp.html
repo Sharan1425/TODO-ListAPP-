@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        .todolist{
+            justify-content: center;
+            border-color: rgb(213, 213, 223);
+            text-align: center;
+            color: rgb(234, 238, 245);
+            font-style: oblique;
+            font-size: 30px;
+        }
+        body{
+            background-color: #2F4F4F;
+        }
+        .dark{ 
+            background-color: #222; 
+            color: #e6e6e6; 
+        }
+        input{
+            margin-top: 15px;
+            margin-left: 40px;
+            width: 450px;
+            height: 35px;
+
+        }
+        .subtitle{
+            text-align: center;
+        }
+        .btn-success, .btn-danger{
+            width: 200px;
+            margin-left: 40px;
+            height: 35px;
+        }
+        .taskdiv, .historydiv{
+            width: 450px;
+            margin-left: 30px;
+            margin-right: 10px;
+            display: grid;
+            background-color: #B0C4DE;
+            text-align: center;
+            align-items: flex-start;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 450px 450px;
+            padding: 10px;
+            height: 320px;
+            grid-gap: 10px;
+            
+        }
+       i{
+        margin-top: 8px;
+       }
+       .taskheader, .historyheader{
+        height: 30px;
+       vertical-align: text-bottom;
+        margin-top: 5px;
+        text-align: center;
+       }
+      
+       /* .taskdiv{
+        border: 3px solid rgba(0, 0, 0, 0.8);
+
+       } */
+       .taskp{
+        /* text-align: start; */
+        margin-top: 5px;
+        
+       }
+       .box1, .box2{
+        
+        width: 400px;
+        height: 300px;
+        background-color: #B0C4DE;
+        float: left;
+        margin-top: 10px;
+        
+       }
+       .box2{
+        
+        margin-left: 10px;
+        width: 450px;
+       }
+       .box1{
+        width: 450px;
+       }
+
+       .historycontent{
+        width: 410px;
+        margin-left: 10px;
+        background-color: #2F4F4F;
+        color: antiquewhite;
+        margin-top: 5px;
+       }
+       .taskcontent{
+        width: 410px;
+        margin-left: 10px;
+        background-color: #2F4F4F;
+        color: antiquewhite;
+        margin-top: 5px;
+        
+       }
+       .fa-close{
+        
+        /* margin-left: 300px; */
+        float: right;
+        /* margin-right: 10px; */
+        /* position: absolute; */
+        top : 50%;
+        bottom: 50%;
+        transform: translate(-30%, -30%);
+        
+       }
+       .textstrick{
+        text-decoration: line-through;
+        color: white
+       }
+
+       li{
+        list-style-type: none;
+       }
+       .hidiv, .condiv{
+        height: 260px;
+        width: 430px;
+        background-color: aliceblue;
+        margin: auto;
+        overflow-y: scroll;
+       }
+       span{
+        margin-top: 1px;
+        padding-top: 5px;
+       }
+
+       /* toggle */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-left: 30px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  top: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* hover */
+div#pop-up-DT, #pop-up-BT{
+   display: none;
+   position: absolute;
+   width: 80px;
+   padding: 5px;
+   background: #eeeeee;
+   color: #000000;
+   border: 1px solid #1a1a1a;
+   font-size: 50%;
+ }
+      
+
+    </style>
+</head>
+<body>
+    <div class="maindiv">
+    <div class="todolist"> TO DO LIST</div>
+    <div class="subtitle">
+        <h6> App that you can use to mark your daily activities</h6>
+       
+    </div>
+    </div>
+    <span>
+    <button type="button" class="btn btn-success"> <i style="font-size:14px" class="fa">&#xf0fe; </i> Add</button>
+    <button type="button" class="btn btn-danger"> <i style="font-size:14px" class="fa">&#xf079;</i> Reset</button>
+    
+    <label class="switch">
+        <input class ="toggle" type="checkbox">
+        <span class="slider round"></span>
+        <div id="pop-up-DT"> Switch To Dark Theme</div>
+        <div id="pop-up-BT"> Switch To Bright Theme</div>
+      </label>
+      
+    <div class="inputtext">
+        <input type="input" id="inputtext" placeholder="Enter the Task here" > 
+
+    
+    </div>
+   
+</span>
+<!-- <div class="grid-container">
+    <div class="taskdiv">
+
+        <div class="taskheader">
+        <span><i style="font-size:15px" class="fa">&#xf233; <u>List of Tasks </u></i></span>
+        </div>
+
+        <div class="taskcontent">
+        <p class="taskp">Tesing task for today</p>
+        </div>
+    </div>  
+    <div class="historydiv">
+        <span><i style="font-size:15px" class="fa">&#xf1da; <u>History</u> </i></span>
+    </div> -->
+ <!-- </div> -->
+<div class="container">
+        <div class="box1">
+        <div class="taskheader">
+            <span><i style="font-size:15px" class="fa">&#xf233; <u>List of Tasks </u></i></span>
+            </div>  
+            <div class="condiv"></div>
+        
+        <!-- <div class="taskcontent">
+                <ls>Testing task
+                    <i class="fa fa-close"></i>
+                </ls>
+        </div> -->
+    </div>
+    <div class="box2">
+        <div class="historyheader">
+            <span><i style="font-size:15px" class="fa">&#xf1da; <u>History</u> </i></span>
+        </div> 
+
+        <div class="hidiv"></div>
+        <!-- <div class="historycontent">
+            <ls>Testing History</ls>
+        </div> -->
+    </div>
+    
+</li>
+</div>
+<script src="./todojs.js"></script>
+</body>
+</html>
